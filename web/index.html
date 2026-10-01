@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10262b">
+    <meta name="description" content="A quick sword-fighting arcade game. Hold the line and climb the leaderboard.">
+    <title>Ninja: Last Stand</title>
+    <link rel="stylesheet" href="/static/game.css">
+    <script src="/static/combat.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#arena">Skip to the game</a>
+    <header class="topbar">
+        <a class="wordmark" href="/" aria-label="Ninja: Last Stand home">NINJA <span>LAST STAND</span></a>
+        <a class="portfolio-link" href="/docs">Score API <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main class="game-layout" id="arena">
+        <section class="game-column" aria-labelledby="game-title">
+            <div class="game-heading">
+                <div>
+                    <p class="eyebrow">NIGHT WATCH · DUEL MODE</p>
+                    <h1 id="game-title">Steel meets<br><span>shadow.</span></h1>
+                </div>
+                <div class="scoreboard" aria-live="polite">
+                    <div><span>ROUND</span><strong id="round-value">1</strong></div>
+                    <div><span>SCORE</span><strong id="score-value">0</strong></div>
+                    <div><span>BEST</span><strong id="best-value">0</strong></div>
+                    <div><span>COMBO</span><strong id="combo-value">0×</strong></div>
+                </div>
+            </div>
+
+            <div class="arena-frame">
+                <div class="arena-topline">
+                    <span><i class="live-dot" aria-hidden="true"></i><span id="phase-label">READY</span></span>
+                    <span class="arena-coordinate">KASUMI DOJO <b>·</b> DUEL</span>
+                </div>
+                <div class="duel-hud" aria-live="polite">
+                    <div class="fighter-meter player-meter">
+                        <div class="meter-label"><span>FIGHTER</span><strong id="player-health-text">100 / 100</strong></div>
+                        <div class="meter-track"><span class="meter-fill health-fill" id="player-health-fill"></span></div>
+                        <div class="meter-label stamina-label"><span>STAMINA</span><strong id="player-stamina-text">100 / 100</strong></div>
+                        <div class="meter-track stamina-track"><span class="meter-fill stamina-fill" id="player-stamina-fill"></span></div>
+                    </div>
+                    <div class="enemy-meter">
+                        <div class="meter-label"><span id="enemy-name-text">WAITING</span><strong id="enemy-health-text">—</strong></div>
+                        <div class="meter-track"><span class="meter-fill enemy-health-fill" id="enemy-health-fill"></span></div>
+                    </div>
+                </div>
+                <div class="canvas-wrap">
+                    <canvas id="game-canvas" aria-label="Control a ninja in a sword duel against a computer-controlled opponent"></canvas>
+                    <div class="start-overlay" id="start-overlay">
+                        <p class="overlay-kicker" id="overlay-kicker">THE PASS IS QUIET</p>
+                        <h2 id="overlay-title">Choose your opening.</h2>
+                        <p id="overlay-copy">Move with A/D. Jump W, guard L, dash Shift, quick strike Space/J, heavy strike K.</p>
+                        <button class="start-button" id="start-button" type="button">Enter the Dojo <span aria-hidden="true">→</span></button>
+                    </div>
+                </div>
+                <div class="arena-footer">
+                    <label class="fighter-field" for="fighter-name">
+                        <span>FIGHTER</span>
+                        <input id="fighter-name" type="text" maxlength="24" value="Ninja" autocomplete="nickname" aria-label="Fighter name">
+                    </label>
+                    <p class="status-message" id="status-message" aria-live="polite">Read the red wind-up. Guard, jump, or dash to answer.</p>
+                    <span class="key-hint">DUEL LOG <b>·</b> LIVE</span>
+                </div>
+                <div class="control-deck" aria-label="Combat controls">
+                    <div class="control-cluster movement-cluster" aria-label="Movement">
+                        <button class="control-button movement-button" type="button" data-control data-hold="left" aria-label="Move left" aria-pressed="false">← <kbd>A</kbd></button>
+                        <button class="control-button movement-button" type="button" data-control data-hold="right" aria-label="Move right" aria-pressed="false">→ <kbd>D</kbd></button>
+                        <button class="control-button" type="button" data-control data-action="jump">Jump <kbd>W</kbd></button>
+                    </div>
+                    <div class="control-cluster defense-cluster" aria-label="Defence">
+                        <button class="control-button" type="button" data-control data-hold="block" aria-label="Hold guard" aria-pressed="false">Guard <kbd>L</kbd></button>
+                        <button class="control-button" type="button" data-control data-action="dash">Dash <kbd>SHIFT</kbd></button>
+                    </div>
+                    <div class="control-cluster attack-cluster" aria-label="Attacks">
+                        <button class="control-button light-button" type="button" data-control data-action="light">Quick <kbd>J / SPACE</kbd></button>
+                        <button class="control-button heavy-button" type="button" data-control data-action="heavy">Heavy <kbd>K</kbd></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="leaderboard-panel" aria-labelledby="leaderboard-title">
+            <div class="leaderboard-heading">
+                <p class="eyebrow">THE SURVIVORS</p>
+                <h2 id="leaderboard-title">High scores</h2>
+            </div>
+            <ol class="leaderboard-list" id="leaderboard-list" aria-live="polite">
+                <li class="leaderboard-empty">Loading scores…</li>
+            </ol>
+            <p class="leaderboard-footnote" id="leaderboard-message">LOCAL SERVER RECORDS</p>
+        </aside>
+    </main>
+
+    <footer class="page-footer">
+        <span>NINJA: LAST STAND</span>
+        <a href="/docs">SCORE API DOCS</a>
+    </footer>
+</body>
+</html>
